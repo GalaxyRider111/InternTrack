@@ -24,26 +24,38 @@ Sample data used across all stages:
 
 ## How to run
 
-Open `index.html` in a browser. No build step, no server.
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Then open the address printed in the terminal (http://localhost:5173).
 
 ## AI usage
 
 | Tool | Used for |
 | :--- | :--- |
-| Gemini | Brainstorming project theme, defining data model, generating Stage 1 README structure, and suggesting HTML/CSS patterns for the static mockup |
-| Antigravity (Claude) | Implementing Stage 1 files (index.html, style.css) and Stage 2 data logic (internships.js) following the course guides |
+| Gemini | Brainstorming project theme, defining data model, generating initial README structure, and suggesting HTML/CSS patterns |
+| Antigravity (Claude) | Implementing Stage 1 (mockup), Stage 2 data logic (internships.js), and Stage 3 (Vite + React project in frontend/) |
 
 Details per stage: see the `ai-log/` folder.
 
 ## Stage 2: data logic
 
-Plain JavaScript, no DOM. `internships.js` holds the array and the functions that read and change it. Results are printed in the browser console (F12).
+Plain JavaScript, no DOM. `mockup/internships.js` holds the array and the functions that read and change it. Results are printed in the browser console (F12).
+
+## Stage 3: Vite and React project
+
+The app now lives in `frontend/`, built with Vite. The data from stage 2
+moved into the main component; the list is still printed raw.
 
 ## Status
 
 - [x] Stage 1: static mockup
 - [x] Stage 2: data logic in JavaScript
-- [ ] Stage 3: Vite and React project
+- [x] Stage 3: Vite and React project
+- [ ] Stage 4: components and props
 
 ## Verification Checklist (Stage 1)
 
@@ -52,20 +64,32 @@ Plain JavaScript, no DOM. `internships.js` holds the array and the functions tha
 | S1-R1 | README: description, fields, sample data, how to run | [README.md](README.md) | read |
 | S1-R2 | AI usage section | [README.md#ai-usage](README.md) | read |
 | S1-R3 | AI log for stage 1 | [ai-log/etapa-01.md](ai-log/etapa-01.md) | read |
-| S1-R4 | header, form (text + select), 3 cards with own data | [index.html](index.html) | open the page |
-| S1-R5 | finished card looks different (line-through, muted color) | [style.css](style.css) | look at card #2 |
-| S1-R6 | 2 columns on desktop, 1 under 700px | [style.css](style.css) | resize < 700px |
-| S1-R7 | visible focus, readable dark theme | [style.css](style.css) | Tab key; dark mode |
+| S1-R4 | header, form (text + select), 3 cards with own data | [mockup/index.html](mockup/index.html) | open the page |
+| S1-R5 | finished card looks different (line-through, muted color) | [mockup/style.css](mockup/style.css) | look at card #2 |
+| S1-R6 | 2 columns on desktop, 1 under 700px | [mockup/style.css](mockup/style.css) | resize < 700px |
+| S1-R7 | visible focus, readable dark theme | [mockup/style.css](mockup/style.css) | Tab key; dark mode |
 | S1-R8 | commit "Stage 1" pushed | see commit history | git log |
 
 ## Verification Checklist (Stage 2)
 
 | ID | Requirement | Where (permalink) | How to check |
 | :--- | :--- | :--- | :--- |
-| S2-R1 | JS file linked, logs on page load | [index.html](index.html) (script) | open page, F12 |
-| S2-R2 | 3+ items with id, name, state, tag | [internships.js#L8-L12](internships.js) | read |
-| S2-R3 | list, count, search, add, toggle, delete | [internships.js#L18-L70](internships.js) | console output |
-| S2-R4 | add rejects empty name and invalid tag | [internships.js#L88-L89](internships.js) | last 2 console lines |
-| S2-R5 | original array unchanged after add | [internships.js#L84](internships.js) | console line |
+| S2-R1 | JS file linked, logs on page load | [mockup/index.html](mockup/index.html) (script) | open page, F12 |
+| S2-R2 | 3+ items with id, name, state, tag | [mockup/internships.js#L8-L12](mockup/internships.js) | read |
+| S2-R3 | list, count, search, add, toggle, delete | [mockup/internships.js#L18-L70](mockup/internships.js) | console output |
+| S2-R4 | add rejects empty name and invalid tag | [mockup/internships.js#L88-L89](mockup/internships.js) | last 2 console lines |
+| S2-R5 | original array unchanged after add | [mockup/internships.js#L84](mockup/internships.js) | console line |
 | S2-R6 | README Stage 2 section + AI log | [README.md](README.md), [ai-log/etapa-02.md](ai-log/etapa-02.md) | read |
 | S2-R7 | commit "Stage 2" pushed | see commit history | git log |
+
+## Verification Checklist (Stage 3)
+
+| ID | Requirement | Where (permalink) | How to check |
+| :--- | :--- | :--- | :--- |
+| S3-R1 | npm run dev starts without errors | [frontend/package.json](frontend/package.json) | npm install, npm run dev |
+| S3-R2 | app name and counter computed from data | [frontend/src/App.jsx#L14-L24](frontend/src/App.jsx) | edit data, save |
+| S3-R3 | data from README, not from the example | [frontend/src/App.jsx#L1-L5](frontend/src/App.jsx) | compare with README |
+| S3-R4 | stage 1 styles reused | [frontend/src/App.css](frontend/src/App.css) | look at the page |
+| S3-R5 | node_modules ignored, build passes | [frontend/.gitignore](frontend/.gitignore) | npm run build |
+| S3-R6 | README Stage 3 section + AI log | [README.md](README.md), [ai-log/etapa-03.md](ai-log/etapa-03.md) | read |
+| S3-R7 | commit "Stage 3" pushed | see commit history | git log |
