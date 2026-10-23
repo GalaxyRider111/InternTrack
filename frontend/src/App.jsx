@@ -24,6 +24,8 @@ export default function App() {
           <pre>{JSON.stringify(internships, null, 2)}</pre>
         </section>
       </main>
+
+      <footer className="app-footer">Proiect Tehnologii Web</footer>
     </>
   );
 }

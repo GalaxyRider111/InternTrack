@@ -89,6 +89,19 @@ body {
   color: var(--text);
 }
 
+pre {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--text);
+  overflow-x: auto;
+}
+
 /* ============================================================
    4.5 Form (Flexbox — column direction)
    ============================================================ */
