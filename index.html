@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>InternTrack - mockup</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="app-header">
+    <h1>InternTrack</h1>
+    <p>Track internships and entry-level jobs. Find the right opportunity.</p>
+    <p class="app-count">3 opportunities, of which 2 active</p>
+  </header>
+
+  <main class="container">
+
+    <!-- Left panel: Add form -->
+    <section class="panel">
+      <h2>Add opportunity</h2>
+      <form class="item-form">
+        <label>
+          Title
+          <input type="text" name="title" placeholder="Ex: Junior Frontend Intern at Google" />
+        </label>
+        <label>
+          Demand
+          <select name="demand">
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+          </select>
+        </label>
+        <label>
+          Company
+          <input type="text" name="company" placeholder="Ex: Bitdefender" />
+        </label>
+        <label>
+          Work mode
+          <select name="workMode">
+            <option value="remote">Remote</option>
+            <option value="hybrid" selected>Hybrid</option>
+            <option value="on-site">On-site</option>
+          </select>
+        </label>
+        <label>
+          CV match (%)
+          <input type="number" name="cvMatch" placeholder="Ex: 85" min="0" max="100" />
+        </label>
+        <label>
+          Deadline
+          <input type="text" name="deadline" placeholder="Ex: 3 days left" />
+        </label>
+        <button type="submit">Add</button>
+      </form>
+    </section>
+
+    <!-- Right panel: Opportunities list -->
+    <section class="panel">
+      <h2>My opportunities</h2>
+      <!-- When list is empty: <p class="empty">No opportunities yet.</p> -->
+      <ul class="item-list">
+
+        <!-- Item 1: active, high demand -->
+        <li class="item-card">
+          <div>
+            <h3>Junior Frontend Developer</h3>
+            <span class="badge badge-high">High demand</span>
+            <p class="item-meta">Bitdefender &middot; Hybrid &middot; CV match: 88% &middot; 5 days left</p>
+          </div>
+          <span class="status">Active</span>
+        </li>
+
+        <!-- Item 2: done, medium demand -->
+        <li class="item-card done">
+          <div>
+            <h3>CNC Machine Operator Intern</h3>
+            <span class="badge badge-medium">Medium demand</span>
+            <p class="item-meta">Bosch &middot; On-site &middot; CV match: 62% &middot; Expired</p>
+          </div>
+          <span class="status">Done</span>
+        </li>
+
+        <!-- Item 3: active, low demand -->
+        <li class="item-card">
+          <div>
+            <h3>Legal Assistant Intern</h3>
+            <span class="badge badge-low">Low demand</span>
+            <p class="item-meta">CMS Law &middot; On-site &middot; CV match: 74% &middot; 12 days left</p>
+          </div>
+          <span class="status">Active</span>
+        </li>
+
+      </ul>
+    </section>
+
+  </main>
+
+  <footer class="app-footer">Proiect Tehnologii Web</footer>
+
+</body>
+</html>
