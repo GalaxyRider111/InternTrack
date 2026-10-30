@@ -1,3 +1,5 @@
+import InternshipList from "./components/InternshipList.jsx";
+
 const internships = [
   { id: 1, title: "Junior Frontend Developer", applied: false, demand: "high", company: "Bitdefender", workMode: "hybrid", cvMatch: 88, deadline: "5 days left" },
   { id: 2, title: "CNC Machine Operator Intern", applied: true, demand: "medium", company: "Bosch", workMode: "on-site", cvMatch: 62, deadline: "Expired" },
@@ -20,8 +22,7 @@ export default function App() {
       <main className="container">
         <section className="panel">
           <h2>My opportunities</h2>
-          {/* Temporar: date brute; componentele apar în Etapa 4 */}
-          <pre>{JSON.stringify(internships, null, 2)}</pre>
+          <InternshipList internships={internships} />
         </section>
       </main>
 

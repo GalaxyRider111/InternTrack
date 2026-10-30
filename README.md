@@ -37,7 +37,7 @@ Then open the address printed in the terminal (http://localhost:5173).
 | Tool | Used for |
 | :--- | :--- |
 | Gemini | Brainstorming project theme, defining data model, generating initial README structure, and suggesting HTML/CSS patterns |
-| Antigravity (Claude) | Implementing Stage 1 (mockup), Stage 2 data logic (internships.js), and Stage 3 (Vite + React project in frontend/) |
+| Antigravity (Claude) | Implementing Stage 1 (mockup), Stage 2 data logic (internships.js), Stage 3 (Vite + React project in frontend/) and Stage 4 (components rendered from data) |
 
 Details per stage: see the `ai-log/` folder.
 
@@ -50,12 +50,19 @@ Plain JavaScript, no DOM. `mockup/internships.js` holds the array and the functi
 The app now lives in `frontend/`, built with Vite. The data from stage 2
 moved into the main component; the list is still printed raw.
 
+## Stage 4: components
+
+The list is rendered from the data, through two components:
+- `InternshipList` receives the whole array and renders one card per item
+- `InternshipCard` receives a single item through props and displays it
+
 ## Status
 
 - [x] Stage 1: static mockup
 - [x] Stage 2: data logic in JavaScript
 - [x] Stage 3: Vite and React project
-- [ ] Stage 4: components and props
+- [x] Stage 4: components rendered from data
+- [ ] Stage 5: local state and events
 
 ## Verification Checklist (Stage 1)
 
