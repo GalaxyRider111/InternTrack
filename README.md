@@ -100,3 +100,15 @@ The list is rendered from the data, through two components:
 | S3-R5 | node_modules ignored, build passes | [frontend/.gitignore](frontend/.gitignore) | npm run build |
 | S3-R6 | README Stage 3 section + AI log | [README.md](README.md), [ai-log/etapa-03.md](ai-log/etapa-03.md) | read |
 | S3-R7 | commit "Stage 3" pushed | see commit history | git log |
+
+## Verification Checklist (Stage 4)
+
+| ID | Requirement | Where (permalink) | How to check |
+| :--- | :--- | :--- | :--- |
+| S4-R1 | 2+ components in src/components/ | [frontend/src/components/](https://github.com/GalaxyRider111/InternTrack/tree/29323a3ede774703ddc70c8c7cef3aa78c1016a2/frontend/src/components) | open folder |
+| S4-R2 | card receives data through props | [InternshipCard.jsx#L5-L21](https://github.com/GalaxyRider111/InternTrack/blob/29323a3ede774703ddc70c8c7cef3aa78c1016a2/frontend/src/components/InternshipCard.jsx#L5-L21) | read |
+| S4-R3 | map + key={id}, no console warnings | [InternshipList.jsx#L9-L15](https://github.com/GalaxyRider111/InternTrack/blob/29323a3ede774703ddc70c8c7cef3aa78c1016a2/frontend/src/components/InternshipList.jsx#L9-L15) | F12, Console |
+| S4-R4 | message for empty list | [InternshipList.jsx#L5-L7](https://github.com/GalaxyRider111/InternTrack/blob/29323a3ede774703ddc70c8c7cef3aa78c1016a2/frontend/src/components/InternshipList.jsx#L5-L7) | set array to [] |
+| S4-R5 | state changes the card look | [InternshipCard.jsx#L7](https://github.com/GalaxyRider111/InternTrack/blob/29323a3ede774703ddc70c8c7cef3aa78c1016a2/frontend/src/components/InternshipCard.jsx#L7) | toggle an `applied` flag |
+| S4-R6 | README Stage 4 section + AI log | [README.md](README.md), [ai-log/etapa-04.md](ai-log/etapa-04.md) | read |
+| S4-R7 | commit "Stage 4" pushed | [29323a3](https://github.com/GalaxyRider111/InternTrack/commit/29323a3ede774703ddc70c8c7cef3aa78c1016a2) | commit history |
