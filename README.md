@@ -120,3 +120,16 @@ which is what stage 6 and stage 10 fix.
 | S4-R5 | state changes the card look | [InternshipCard.jsx#L7](https://github.com/GalaxyRider111/InternTrack/blob/29323a3ede774703ddc70c8c7cef3aa78c1016a2/frontend/src/components/InternshipCard.jsx#L7) | toggle an `applied` flag |
 | S4-R6 | README Stage 4 section + AI log | [README.md](README.md), [ai-log/etapa-04.md](ai-log/etapa-04.md) | read |
 | S4-R7 | commit "Stage 4" pushed | [29323a3](https://github.com/GalaxyRider111/InternTrack/commit/29323a3ede774703ddc70c8c7cef3aa78c1016a2) | commit history |
+
+## Verification Checklist (Stage 5)
+
+| ID | Requirement | Where (permalink) | How to check |
+| :--- | :--- | :--- | :--- |
+| S5-R1 | list kept in useState, in App | [App.jsx#L17](https://github.com/GalaxyRider111/InternTrack/blob/8967c61dce4dabcceecf0f9f7e83ae24653fb67c/frontend/src/App.jsx#L17) | read |
+| S5-R2 | toggling changes state and card look | [App.jsx#L21-L25](https://github.com/GalaxyRider111/InternTrack/blob/8967c61dce4dabcceecf0f9f7e83ae24653fb67c/frontend/src/App.jsx#L21-L25), [InternshipCard.jsx#L7-L13](https://github.com/GalaxyRider111/InternTrack/blob/8967c61dce4dabcceecf0f9f7e83ae24653fb67c/frontend/src/components/InternshipCard.jsx#L7-L13) | click a checkbox |
+| S5-R3 | delete removes the item | [App.jsx#L27-L29](https://github.com/GalaxyRider111/InternTrack/blob/8967c61dce4dabcceecf0f9f7e83ae24653fb67c/frontend/src/App.jsx#L27-L29), [InternshipCard.jsx#L25-L31](https://github.com/GalaxyRider111/InternTrack/blob/8967c61dce4dabcceecf0f9f7e83ae24653fb67c/frontend/src/components/InternshipCard.jsx#L25-L31) | click Delete |
+| S5-R4 | header counter derived, not in state | [App.jsx#L39](https://github.com/GalaxyRider111/InternTrack/blob/8967c61dce4dabcceecf0f9f7e83ae24653fb67c/frontend/src/App.jsx#L39) | toggle, watch header |
+| S5-R5 | immutable updates (no push, splice, assignment) | [App.jsx#L21-L29](https://github.com/GalaxyRider111/InternTrack/blob/8967c61dce4dabcceecf0f9f7e83ae24653fb67c/frontend/src/App.jsx#L21-L29) | read |
+| S5-R6 | light / dark toggle: state + data-theme on html | [App.jsx#L32-L36](https://github.com/GalaxyRider111/InternTrack/blob/8967c61dce4dabcceecf0f9f7e83ae24653fb67c/frontend/src/App.jsx#L32-L36), [App.css#L267-L300](https://github.com/GalaxyRider111/InternTrack/blob/8967c61dce4dabcceecf0f9f7e83ae24653fb67c/frontend/src/App.css#L267-L300) | click the button, both system themes |
+| S5-R7 | no console warnings; README + AI log | [README.md](README.md), [ai-log/etapa-05.md](ai-log/etapa-05.md) | F12, Console |
+| S5-R8 | commit "Stage 5" pushed | [8967c61](https://github.com/GalaxyRider111/InternTrack/commit/8967c61dce4dabcceecf0f9f7e83ae24653fb67c) | commit history |
