@@ -37,7 +37,7 @@ Then open the address printed in the terminal (http://localhost:5173).
 | Tool | Used for |
 | :--- | :--- |
 | Gemini | Brainstorming project theme, defining data model, generating initial README structure, and suggesting HTML/CSS patterns |
-| Antigravity (Claude) | Implementing Stage 1 (mockup), Stage 2 data logic (internships.js), Stage 3 (Vite + React project in frontend/) and Stage 4 (components rendered from data) |
+| Antigravity (Claude / Gemini) | Implementing Stage 1 (mockup), Stage 2 data logic (internships.js), Stage 3 (Vite + React project in frontend/), Stage 4 (components rendered from data), and Stage 5 (local state, event handlers, theme switcher) |
 
 Details per stage: see the `ai-log/` folder.
 
@@ -56,13 +56,21 @@ The list is rendered from the data, through two components:
 - `InternshipList` receives the whole array and renders one card per item
 - `InternshipCard` receives a single item through props and displays it
 
+## Stage 5: local state and events
+
+The list lives in React state. Checking and deleting work from the page,
+and the counters in the header follow automatically. A button in the
+header switches between light and dark mode. Changes are lost on refresh,
+which is what stage 6 and stage 10 fix.
+
 ## Status
 
 - [x] Stage 1: static mockup
 - [x] Stage 2: data logic in JavaScript
 - [x] Stage 3: Vite and React project
 - [x] Stage 4: components rendered from data
-- [ ] Stage 5: local state and events
+- [x] Stage 5: local state and events
+- [ ] Stage 6: loading data from a mock API
 
 ## Verification Checklist (Stage 1)
 

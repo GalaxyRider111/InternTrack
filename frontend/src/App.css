@@ -1,5 +1,5 @@
 /* ============================================================
-   App.css — InternTrack · Stage 4 (Styles adapted from Stage 1)
+   App.css — InternTrack · Stage 5 (Styles adapted from Stage 1)
    ============================================================ */
 
 /* 4.1 Box model + CSS custom properties (all colors via variables) */
@@ -35,6 +35,7 @@ body {
    4.2 Header
    ============================================================ */
 .app-header {
+  position: relative;
   background: var(--accent);
   color: #ffffff;
   text-align: center;
@@ -260,11 +261,11 @@ body {
 }
 
 /* ============================================================
-   Pasul 5 — Dark theme (prefers-color-scheme)
-   Only the variable values change; all rules above adapt via var()
+   Pasul 8 — Tema luminoasă și tema întunecată
    ============================================================ */
+/* Tema sistemului, dacă utilizatorul nu a ales explicit tema luminoasă */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg:           #14121d;
     --card:         #1e1b2e;
     --text:         #e5e7eb;
@@ -273,10 +274,90 @@ body {
     --accent-soft:  #2a2342;
   }
 
-  .item-form input,
-  .item-form select {
+  :root:not([data-theme="light"]) .item-form input,
+  :root:not([data-theme="light"]) .item-form select {
     background: #1e1b2e;
     color: var(--text);
     border-color: var(--border);
   }
 }
+
+/* Etapa 5: tema aleasă din buton are prioritate față de cea a sistemului */
+:root[data-theme="dark"] {
+  --bg:           #14121d;
+  --card:         #1e1b2e;
+  --text:         #e5e7eb;
+  --muted:        #9ca3af;
+  --border:       #352f4d;
+  --accent-soft:  #2a2342;
+}
+
+:root[data-theme="dark"] .item-form input,
+:root[data-theme="dark"] .item-form select {
+  background: #1e1b2e;
+  color: var(--text);
+  border-color: var(--border);
+}
+
+/* ============================================================
+   Etapa 5: Checkbox și buton de ștergere în card
+   ============================================================ */
+.item-main,
+.task-main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  flex: 1;
+}
+
+.item-main input[type="checkbox"],
+.task-main input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.btn-danger {
+  border: 1px solid var(--badge-high);
+  background: transparent;
+  color: var(--badge-high);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  flex-shrink: 0;
+  margin-left: 12px;
+}
+
+.btn-danger:hover {
+  background: var(--badge-high);
+  color: #ffffff;
+}
+
+/* ============================================================
+   Etapa 5: Butonul de comutare a temei, în colțul antetului
+   ============================================================ */
+.theme-toggle {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  padding: 6px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 8px;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
