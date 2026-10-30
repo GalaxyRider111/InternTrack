@@ -1,363 +1,856 @@
 /* ============================================================
-   App.css — InternTrack · Stage 5 (Styles adapted from Stage 1)
+   App.css — InternTrack · Bento Grid & Neo-Brutalism Theme
+   Combining modular bento layout with tactile neobrutalist design
    ============================================================ */
 
-/* 4.1 Box model + CSS custom properties (all colors via variables) */
-* {
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap");
+
+/* ------------------------------------------------------------
+   1. Box Model & Custom Properties
+   ------------------------------------------------------------ */
+*, *::before, *::after {
   box-sizing: border-box;
 }
 
 :root {
-  --bg:           #f4f5f7;        /* page background          */
-  --card:         #ffffff;        /* panel / card background  */
-  --text:         #1f2933;        /* main text                */
-  --muted:        #6b7280;        /* secondary / muted text   */
-  --accent:       #4f46e5;        /* brand accent (indigo)    */
-  --accent-dark:  #3730a3;        /* hover state for accent   */
-  --accent-soft:  #e0e7ff;        /* light accent background  */
-  --border:       #e5e7eb;        /* subtle borders           */
+  /* Neo-Brutalist Light Palette */
+  --bg:              #f4f1ea;       /* Warm architectural canvas */
+  --bg-pattern:      #d5d0c3;       /* Contrast grid dot color */
+  --card:            #ffffff;       /* Pure white card surface */
+  --card-alt:        #fffdfa;       /* Secondary card surface */
+  --text:            #121316;       /* Deep high-contrast ink */
+  --muted:           #525866;       /* Readable secondary text */
+  --border:          #141416;       /* Chunky neo-brutal border */
+  --shadow-color:    #141416;       /* Solid drop shadow */
+  --shadow-sm:       2px 2px 0px var(--shadow-color);
+  --shadow-md:       4px 4px 0px var(--shadow-color);
+  --shadow-lg:       6px 6px 0px var(--shadow-color);
 
-  /* one color per demand value */
-  --badge-high:   #dc2626;
-  --badge-medium: #d97706;
-  --badge-low:    #16a34a;
+  /* Neo Brand Accents */
+  --accent:          #ffe600;       /* Iconic Neo Yellow */
+  --accent-purple:   #6366f1;       /* Electric Indigo */
+  --accent-cyan:     #06b6d4;       /* Vivid Cyan */
+  --accent-coral:    #ff5c5c;       /* Punchy Coral */
+  --accent-lime:     #22c55e;       /* Bright Lime */
+
+  /* Demand Badges */
+  --badge-high:      #ff3b30;       /* High urgency red */
+  --badge-medium:    #f59e0b;       /* Medium urgency amber */
+  --badge-low:       #10b981;       /* Low urgency emerald */
+
+  /* Bento Tile Tinting (Light) */
+  --tile-hero-bg:    #ffe600;
+  --tile-stat1-bg:   #e0e7ff;
+  --tile-stat2-bg:   #fed7aa;
+  --tile-stat3-bg:   #bbf7d0;
+
+  --radius-sm:       8px;
+  --radius-md:       12px;
+  --radius-lg:       16px;
+  --border-width:    2.5px;
 }
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  background: var(--bg);
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg);
+  background-image: radial-gradient(var(--bg-pattern) 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
   color: var(--text);
   line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
 }
 
-/* ============================================================
-   4.2 Header
-   ============================================================ */
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ------------------------------------------------------------
+   2. Bento Header & Hero Dashboard
+   ------------------------------------------------------------ */
 .app-header {
+  max-width: 1120px;
+  margin: 28px auto 0;
+  padding: 0 20px;
+  width: 100%;
+}
+
+.bento-header-grid {
+  display: grid;
+  grid-template-columns: 2.2fr 1fr 1fr 1fr;
+  gap: 18px;
+  align-items: stretch;
+}
+
+/* Hero Bento Box */
+.bento-hero-card {
+  background: var(--tile-hero-bg);
+  color: #121316;
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px 26px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   position: relative;
-  background: var(--accent);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.bento-hero-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.bento-hero-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.neo-sticker {
+  display: inline-block;
+  background: #121316;
   color: #ffffff;
-  text-align: center;
-  padding: 28px 16px 24px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
 }
 
-.app-header h1 {
-  margin: 0 0 6px;
-  font-size: 2rem;
-  letter-spacing: -0.5px;
+.bento-hero-card h1 {
+  margin: 0 0 8px;
+  font-size: 2.3rem;
+  font-weight: 900;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  color: #121316;
 }
 
-.app-header p {
-  margin: 4px 0 0;
+.bento-hero-card p {
+  margin: 0 0 14px;
   font-size: 0.95rem;
-  opacity: 0.88;
+  font-weight: 600;
+  color: #2b2e35;
+  line-height: 1.45;
 }
 
 .app-count {
+  display: inline-flex;
+  align-items: center;
   font-size: 0.85rem !important;
-  opacity: 0.75 !important;
-  margin-top: 8px !important;
+  font-weight: 700 !important;
+  color: #121316 !important;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1.5px solid var(--border);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  width: fit-content;
+  box-shadow: var(--shadow-sm);
 }
 
-/* ============================================================
-   4.3 Layout (Grid) — Single column for Stage 3
-   ============================================================ */
-.container {
-  max-width: 1000px;
-  margin: 24px auto;
-  padding: 0 16px;
-  display: grid;
-  /* Etapa 3: doar panoul cu date; a doua coloană revine în Etapa 7 */
-  grid-template-columns: 1fr;
-  gap: 24px;
-  align-items: start;
+/* Bento Stat Cards */
+.bento-stat-card {
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px 18px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-/* ============================================================
-   4.4 Panels
-   ============================================================ */
-.panel {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 20px 20px 24px;
+.bento-stat-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-lg);
 }
 
-.panel h2 {
-  margin: 0 0 16px;
-  font-size: 1.05rem;
+.bento-stat-total {
+  background: var(--tile-stat1-bg);
+}
+
+.bento-stat-active {
+  background: var(--tile-stat2-bg);
+}
+
+.bento-stat-applied {
+  background: var(--tile-stat3-bg);
+}
+
+.bento-stat-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--text);
+  opacity: 0.85;
+}
+
+.bento-stat-value {
+  font-size: 2.8rem;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -1.5px;
   color: var(--text);
 }
 
-/* ============================================================
-   4.5 Form (Flexbox — column direction)
-   ============================================================ */
+.bento-stat-pill {
+  display: inline-block;
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--text);
+  width: fit-content;
+}
+
+/* Theme Switcher Button */
+.theme-toggle {
+  background: var(--card);
+  color: var(--text);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 6px 14px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.15s;
+  white-space: nowrap;
+}
+
+.theme-toggle:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-md);
+}
+
+.theme-toggle:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px var(--border);
+}
+
+/* ------------------------------------------------------------
+   3. Main Container & Bento Panels
+   ------------------------------------------------------------ */
+.container {
+  max-width: 1120px;
+  margin: 28px auto;
+  padding: 0 20px;
+  width: 100%;
+  flex: 1;
+}
+
+.panel {
+  background: var(--card);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 26px;
+}
+
+.panel-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--border);
+}
+
+.panel h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  color: var(--text);
+}
+
+.panel-subtitle {
+  display: block;
+  font-size: 0.86rem;
+  color: var(--muted);
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.bento-badge-counter {
+  background: var(--accent);
+  color: #121316;
+  border: var(--border-width) solid var(--border);
+  box-shadow: var(--shadow-sm);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+/* ------------------------------------------------------------
+   4. Bento Grid of Opportunity Cards
+   ------------------------------------------------------------ */
+.item-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+/* Empty State */
+.empty-box {
+  background: var(--card-alt);
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-md);
+  padding: 48px 24px;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 2.5rem;
+  margin-bottom: 8px;
+}
+
+.empty {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text);
+  margin: 0 0 6px;
+}
+
+.empty-hint {
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+/* Single Bento Opportunity Card */
+.item-card {
+  background: var(--card);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  position: relative;
+}
+
+.item-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Top bar of card */
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.card-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-avatar {
+  width: 28px;
+  height: 28px;
+  background: var(--text);
+  color: var(--card);
+  font-weight: 900;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border: 1.5px solid var(--border);
+}
+
+.brand-name {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.card-badges {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Demand & Workmode Badges */
+.badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #ffffff;
+  padding: 3px 8px;
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  box-shadow: 1.5px 1.5px 0px var(--border);
+}
+
+.badge-high {
+  background: var(--badge-high);
+}
+
+.badge-medium {
+  background: var(--badge-medium);
+  color: #121316;
+}
+
+.badge-low {
+  background: var(--badge-low);
+}
+
+.badge-mode {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Main Clickable Area */
+.item-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  flex: 1;
+}
+
+/* Custom Neo-Brutalist Checkbox */
+.item-main input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border: var(--border-width) solid var(--border);
+  border-radius: 6px;
+  background: var(--card);
+  box-shadow: 2px 2px 0px var(--border);
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+  margin-top: 3px;
+  transition: transform 0.1s ease, background 0.15s ease;
+}
+
+.item-main input[type="checkbox"]:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px var(--border);
+}
+
+.item-main input[type="checkbox"]:checked {
+  background: var(--accent-lime);
+}
+
+.item-main input[type="checkbox"]:checked::after {
+  content: "✔";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 13px;
+  font-weight: 900;
+  color: #121316;
+}
+
+.item-content {
+  flex: 1;
+}
+
+.item-content h3 {
+  margin: 0 0 10px;
+  font-size: 1.08rem;
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--text);
+}
+
+/* CV Match Meter in Bento style */
+.bento-match-meter {
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  margin: 10px 0;
+}
+
+.match-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.74rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.match-score {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  padding: 1px 6px;
+  border-radius: 999px;
+  font-weight: 900;
+}
+
+.match-bar-track {
+  height: 8px;
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.match-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #6366f1, #06b6d4);
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.item-meta {
+  margin: 8px 0 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+/* Card Actions / Footer */
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1.5px solid var(--border);
+  gap: 8px;
+}
+
+.status-tag {
+  font-size: 0.74rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1.5px solid var(--border);
+  box-shadow: 1.5px 1.5px 0px var(--border);
+}
+
+.status-open {
+  background: var(--card-alt);
+  color: var(--text);
+}
+
+.status-applied {
+  background: var(--accent-lime);
+  color: #121316;
+}
+
+/* Delete Button */
+.btn-danger {
+  background: #fee2e2;
+  color: #dc2626;
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 6px 14px;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.btn-danger:hover {
+  background: #dc2626;
+  color: #ffffff;
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-danger:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px var(--border);
+}
+
+/* ------------------------------------------------------------
+   5. Done / Applied Card State (Neo-Brutalist Pattern)
+   ------------------------------------------------------------ */
+.item-card.done {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--card),
+    var(--card) 12px,
+    var(--bg) 12px,
+    var(--bg) 14px
+  );
+  opacity: 0.82;
+}
+
+.item-card.done h3 {
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  color: var(--muted);
+}
+
+.item-card.done .match-bar-fill {
+  background: var(--muted);
+}
+
+/* ------------------------------------------------------------
+   6. Form & Inputs (For Mockup / Future Extension)
+   ------------------------------------------------------------ */
 .item-form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 .item-form label {
   display: flex;
   flex-direction: column;
   font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--muted);
-  gap: 4px;
+  font-weight: 800;
+  color: var(--text);
+  gap: 6px;
 }
 
 .item-form input,
 .item-form select {
-  padding: 8px 10px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  font-size: 0.9rem;
-  background: var(--bg);
+  padding: 10px 12px;
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.92rem;
+  font-family: inherit;
+  font-weight: 600;
+  background: var(--card);
   color: var(--text);
   outline: none;
-  transition: border-color 0.15s;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
 .item-form input:focus,
 .item-form select:focus {
-  border-color: var(--accent);
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border);
 }
 
 .item-form button {
-  margin-top: 4px;
-  padding: 10px;
+  margin-top: 6px;
+  padding: 12px;
   background: var(--accent);
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  font-size: 0.95rem;
-  font-weight: 600;
+  color: #121316;
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.98rem;
+  font-weight: 900;
+  font-family: inherit;
   cursor: pointer;
-  transition: background 0.15s;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
 .item-form button:hover {
-  background: var(--accent-dark);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-lg);
 }
 
-/* ============================================================
-   4.6 Item list and cards (Flexbox)
-   ============================================================ */
-.item-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.item-form button:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px var(--border);
 }
 
-/* Empty state placeholder */
-.empty {
-  color: var(--muted);
-  font-size: 0.9rem;
-  text-align: center;
-  padding: 24px 0;
-}
-
-.item-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px 16px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: var(--card);
-  transition: border-color 0.15s, box-shadow 0.15s;
-}
-
-.item-card:hover {
-  border-color: var(--accent);
-  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.12);
-}
-
-.item-card h3 {
-  margin: 0 0 4px;
-  font-size: 0.95rem;
-  font-weight: 600;
-}
-
-.item-meta {
-  margin: 6px 0 0;
-  font-size: 0.78rem;
-  color: var(--muted);
-}
-
-/* ============================================================
-   4.7 Coloured badges
-   ============================================================ */
-.badge {
-  display: inline-block;
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: #ffffff;
-  padding: 2px 8px;
-  border-radius: 999px;
-  text-transform: uppercase;
-  letter-spacing: 0.4px;
-}
-
-.badge-high   { background: var(--badge-high); }
-.badge-medium { background: var(--badge-medium); }
-.badge-low    { background: var(--badge-low); }
-
-/* ============================================================
-   4.8 Done / finished card
-   ============================================================ */
-.item-card.done {
-  opacity: 0.72;
-}
-
-.item-card.done h3 {
-  text-decoration: line-through;
-  color: var(--muted);
-}
-
-/* ============================================================
-   Status label (Active / Done)
-   ============================================================ */
+/* Status label */
 .status {
   font-size: 0.78rem;
+  font-weight: 800;
   color: var(--muted);
   white-space: nowrap;
-  margin-left: 12px;
-  flex-shrink: 0;
 }
 
-/* ============================================================
-   4.9 Responsive — single column under 700 px
-   ============================================================ */
-@media (max-width: 700px) {
-  .container {
-    grid-template-columns: 1fr;
-  }
+/* ------------------------------------------------------------
+   7. Keyboard Navigation & Accessibility Focus
+   ------------------------------------------------------------ */
+:focus-visible {
+  outline: 3px solid var(--accent-purple);
+  outline-offset: 3px;
 }
 
-/* ============================================================
-   Footer
-   ============================================================ */
+/* ------------------------------------------------------------
+   8. Footer
+   ------------------------------------------------------------ */
 .app-footer {
   text-align: center;
-  padding: 20px 16px;
-  font-size: 0.82rem;
-  color: var(--muted);
-  border-top: 1px solid var(--border);
-  margin-top: 32px;
+  padding: 24px 20px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--text);
+  border-top: var(--border-width) solid var(--border);
+  background: var(--card);
+  margin-top: auto;
 }
 
-/* ============================================================
-   Pasul 5 — :focus-visible (keyboard navigation)
-   ============================================================ */
-:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-
-/* ============================================================
-   Pasul 8 — Tema luminoasă și tema întunecată
-   ============================================================ */
-/* Tema sistemului, dacă utilizatorul nu a ales explicit tema luminoasă */
+/* ------------------------------------------------------------
+   9. Dark Mode — Neo-Brutalist High Contrast Obsidian
+   ------------------------------------------------------------ */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg:           #14121d;
-    --card:         #1e1b2e;
-    --text:         #e5e7eb;
-    --muted:        #9ca3af;
-    --border:       #352f4d;
-    --accent-soft:  #2a2342;
+    --bg:              #0e0f14;       /* Deep matte black canvas */
+    --bg-pattern:      #232533;       /* Subtle dark dots */
+    --card:            #171922;       /* Charcoal card */
+    --card-alt:        #1f212c;       /* Tinted charcoal */
+    --text:            #f8fafc;       /* Bright crisp text */
+    --muted:           #94a3b8;       /* Legible slate */
+    --border:          #3f4357;       /* Prominent dark borders */
+    --shadow-color:    #000000;       /* Pitch black hard shadow */
+
+    --tile-hero-bg:    #2a270f;
+    --tile-stat1-bg:   #1a1d36;
+    --tile-stat2-bg:   #342010;
+    --tile-stat3-bg:   #122b1f;
+
+    --badge-mode:      #262938;
+  }
+
+  :root:not([data-theme="light"]) .bento-hero-card {
+    border-color: #facc15;
+    box-shadow: 4px 4px 0px #000000;
+  }
+
+  :root:not([data-theme="light"]) .bento-hero-card h1 {
+    color: #facc15;
+  }
+
+  :root:not([data-theme="light"]) .bento-hero-card p {
+    color: #e2e8f0;
+  }
+
+  :root:not([data-theme="light"]) .app-count {
+    background: #171922;
+    color: #f8fafc !important;
   }
 
   :root:not([data-theme="light"]) .item-form input,
   :root:not([data-theme="light"]) .item-form select {
-    background: #1e1b2e;
+    background: #171922;
     color: var(--text);
     border-color: var(--border);
   }
+
+  :root:not([data-theme="light"]) .bento-stat-pill {
+    background: #262938;
+    color: #f8fafc;
+  }
+
+  :root:not([data-theme="light"]) .btn-danger {
+    background: #39181a;
+    color: #ff6b6b;
+  }
 }
 
-/* Etapa 5: tema aleasă din buton are prioritate față de cea a sistemului */
 :root[data-theme="dark"] {
-  --bg:           #14121d;
-  --card:         #1e1b2e;
-  --text:         #e5e7eb;
-  --muted:        #9ca3af;
-  --border:       #352f4d;
-  --accent-soft:  #2a2342;
+  --bg:              #0e0f14;
+  --bg-pattern:      #232533;
+  --card:            #171922;
+  --card-alt:        #1f212c;
+  --text:            #f8fafc;
+  --muted:           #94a3b8;
+  --border:          #3f4357;
+  --shadow-color:    #000000;
+
+  --tile-hero-bg:    #2a270f;
+  --tile-stat1-bg:   #1a1d36;
+  --tile-stat2-bg:   #342010;
+  --tile-stat3-bg:   #122b1f;
+
+  --badge-mode:      #262938;
+}
+
+:root[data-theme="dark"] .bento-hero-card {
+  border-color: #facc15;
+  box-shadow: 4px 4px 0px #000000;
+}
+
+:root[data-theme="dark"] .bento-hero-card h1 {
+  color: #facc15;
+}
+
+:root[data-theme="dark"] .bento-hero-card p {
+  color: #e2e8f0;
+}
+
+:root[data-theme="dark"] .app-count {
+  background: #171922;
+  color: #f8fafc !important;
 }
 
 :root[data-theme="dark"] .item-form input,
 :root[data-theme="dark"] .item-form select {
-  background: #1e1b2e;
+  background: #171922;
   color: var(--text);
   border-color: var(--border);
 }
 
-/* ============================================================
-   Etapa 5: Checkbox și buton de ștergere în card
-   ============================================================ */
-.item-main,
-.task-main {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  cursor: pointer;
-  flex: 1;
+:root[data-theme="dark"] .bento-stat-pill {
+  background: #262938;
+  color: #f8fafc;
 }
 
-.item-main input[type="checkbox"],
-.task-main input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  accent-color: var(--accent);
-  cursor: pointer;
-  flex-shrink: 0;
+:root[data-theme="dark"] .btn-danger {
+  background: #39181a;
+  color: #ff6b6b;
 }
 
-.btn-danger {
-  border: 1px solid var(--badge-high);
-  background: transparent;
-  color: var(--badge-high);
-  border-radius: 8px;
-  padding: 6px 12px;
-  font: inherit;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: background 0.15s, color 0.15s;
-  flex-shrink: 0;
-  margin-left: 12px;
+/* ------------------------------------------------------------
+   10. Responsive Breakpoints
+   ------------------------------------------------------------ */
+@media (max-width: 960px) {
+  .bento-header-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .bento-hero-card {
+    grid-column: span 2;
+  }
 }
 
-.btn-danger:hover {
-  background: var(--badge-high);
-  color: #ffffff;
+@media (max-width: 680px) {
+  .bento-header-grid {
+    grid-template-columns: 1fr;
+  }
+  .bento-hero-card {
+    grid-column: span 1;
+  }
+  .item-list {
+    grid-template-columns: 1fr;
+  }
+  .panel {
+    padding: 18px;
+  }
+  .bento-hero-card h1 {
+    font-size: 1.85rem;
+  }
 }
-
-/* ============================================================
-   Etapa 5: Butonul de comutare a temei, în colțul antetului
-   ============================================================ */
-.theme-toggle {
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  padding: 6px 12px;
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: 8px;
-  background: transparent;
-  color: #fff;
-  font: inherit;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: background 0.15s;
-}
-
-.theme-toggle:hover {
-  background: rgba(255, 255, 255, 0.15);
-}
-

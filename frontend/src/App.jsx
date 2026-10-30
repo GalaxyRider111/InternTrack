@@ -37,27 +37,66 @@ export default function App() {
 
   // Valoare derivată: se recalculează la fiecare randare
   const active = internships.filter((t) => !t.applied).length;
+  const appliedCount = internships.length - active;
 
   return (
-    <>
+    <div className="page-wrapper">
       <header className="app-header">
-        <button
-          className="theme-toggle"
-          onClick={handleTheme}
-          aria-pressed={theme === "dark"}
-        >
-          {theme === "dark" ? "Light mode" : "Dark mode"}
-        </button>
-        <h1>InternTrack</h1>
-        <p>Track internships and entry-level jobs. Find the right opportunity.</p>
-        <p className="app-count">
-          {internships.length} opportunities, of which {active} active
-        </p>
+        <div className="bento-header-grid">
+          {/* Hero Bento Box */}
+          <div className="bento-hero-card">
+            <div className="bento-hero-header">
+              <span className="neo-sticker">⚡ INTERN TRACKER</span>
+              <button
+                className="theme-toggle"
+                onClick={handleTheme}
+                aria-pressed={theme === "dark"}
+              >
+                {theme === "dark" ? "☀️ Light mode" : "🌙 Dark mode"}
+              </button>
+            </div>
+            <h1>InternTrack</h1>
+            <p>Track internships and entry-level jobs. Find the right opportunity.</p>
+            <p className="app-count">
+              {internships.length} opportunities, of which {active} active
+            </p>
+          </div>
+
+          {/* Bento Stat: Total */}
+          <div className="bento-stat-card bento-stat-total">
+            <span className="bento-stat-label">TOTAL POSITIONS</span>
+            <span className="bento-stat-value">{internships.length}</span>
+            <span className="bento-stat-pill">📋 Tracked</span>
+          </div>
+
+          {/* Bento Stat: Active */}
+          <div className="bento-stat-card bento-stat-active">
+            <span className="bento-stat-label">ACTIVE ROLES</span>
+            <span className="bento-stat-value">{active}</span>
+            <span className="bento-stat-pill">🔥 Open</span>
+          </div>
+
+          {/* Bento Stat: Applied */}
+          <div className="bento-stat-card bento-stat-applied">
+            <span className="bento-stat-label">APPLIED / CLOSED</span>
+            <span className="bento-stat-value">{appliedCount}</span>
+            <span className="bento-stat-pill">✅ Finished</span>
+          </div>
+        </div>
       </header>
 
       <main className="container">
         <section className="panel">
-          <h2>My opportunities</h2>
+          <div className="panel-header-bar">
+            <div>
+              <h2>My opportunities</h2>
+              <span className="panel-subtitle">Review status, deadline, and CV match rating</span>
+            </div>
+            <div className="bento-badge-counter">
+              {active} active &middot; {internships.length} total
+            </div>
+          </div>
+
           <InternshipList
             internships={internships}
             onToggle={handleToggle}
@@ -67,6 +106,6 @@ export default function App() {
       </main>
 
       <footer className="app-footer">Proiect Tehnologii Web</footer>
-    </>
+    </div>
   );
 }

@@ -1,280 +1,376 @@
 /* ============================================================
-   style.css — InternTrack · Stage 1: Static Mockup
+   style.css — InternTrack · Stage 1 Static Mockup
+   Bento Grid & Neo-Brutalism Edition
    ============================================================ */
 
-/* 4.1 Box model + CSS custom properties (all colors via variables) */
-* {
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap");
+
+/* ------------------------------------------------------------
+   1. Box model + CSS custom properties (Neo-Brutalist Palette)
+   ------------------------------------------------------------ */
+*, *::before, *::after {
   box-sizing: border-box;
 }
 
 :root {
-  --bg:           #f4f5f7;        /* page background          */
-  --card:         #ffffff;        /* panel / card background  */
-  --text:         #1f2933;        /* main text                */
-  --muted:        #6b7280;        /* secondary / muted text   */
-  --accent:       #4f46e5;        /* brand accent (indigo)    */
-  --accent-dark:  #3730a3;        /* hover state for accent   */
-  --accent-soft:  #e0e7ff;        /* light accent background  */
-  --border:       #e5e7eb;        /* subtle borders           */
+  --bg:              #f4f1ea;        /* Architectural paper canvas */
+  --bg-pattern:      #d5d0c3;        /* Contrast grid dot color */
+  --card:            #ffffff;        /* Crisp card surface */
+  --card-alt:        #fffdfa;        /* Tinted surface */
+  --text:            #121316;        /* High-contrast ink */
+  --muted:           #525866;        /* Muted secondary text */
+  --border:          #141416;        /* Chunky neo-brutal border */
+  --shadow-color:    #141416;        /* Solid offset drop shadow */
+  --shadow-sm:       2px 2px 0px var(--shadow-color);
+  --shadow-md:       4px 4px 0px var(--shadow-color);
+  --shadow-lg:       6px 6px 0px var(--shadow-color);
 
-  /* one color per demand value */
-  --badge-high:   #dc2626;
-  --badge-medium: #d97706;
-  --badge-low:    #16a34a;
+  --accent:          #ffe600;        /* Neo Yellow */
+  --accent-dark:     #e6cf00;
+  --accent-purple:   #6366f1;
+  --accent-lime:     #22c55e;
+
+  /* One color per demand value */
+  --badge-high:      #ff3b30;
+  --badge-medium:    #f59e0b;
+  --badge-low:       #10b981;
+
+  --border-width:    2.5px;
+  --radius-md:       12px;
+  --radius-lg:       16px;
 }
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  background: var(--bg);
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg);
+  background-image: radial-gradient(var(--bg-pattern) 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
   color: var(--text);
   line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ============================================================
-   4.2 Header
-   ============================================================ */
+/* ------------------------------------------------------------
+   2. Header — Neo-Brutalist Bento Hero
+   ------------------------------------------------------------ */
 .app-header {
   background: var(--accent);
-  color: #ffffff;
+  color: #121316;
+  border-bottom: var(--border-width) solid var(--border);
+  box-shadow: 0 4px 0px var(--border);
   text-align: center;
-  padding: 28px 16px 24px;
+  padding: 32px 16px 28px;
+  position: relative;
 }
 
 .app-header h1 {
-  margin: 0 0 6px;
-  font-size: 2rem;
-  letter-spacing: -0.5px;
+  margin: 0 0 8px;
+  font-size: 2.4rem;
+  font-weight: 900;
+  letter-spacing: -1px;
 }
 
 .app-header p {
   margin: 4px 0 0;
-  font-size: 0.95rem;
-  opacity: 0.88;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2b2e35;
 }
 
 .app-count {
+  display: inline-block;
   font-size: 0.85rem !important;
-  opacity: 0.75 !important;
-  margin-top: 8px !important;
+  font-weight: 800 !important;
+  color: #121316 !important;
+  background: #ffffff;
+  border: 2px solid var(--border);
+  padding: 4px 12px;
+  border-radius: 999px;
+  box-shadow: var(--shadow-sm);
+  margin-top: 14px !important;
 }
 
-/* ============================================================
-   4.3 Two-column layout (Grid)
-   ============================================================ */
+/* ------------------------------------------------------------
+   3. Two-column Bento Grid Layout
+   ------------------------------------------------------------ */
 .container {
-  max-width: 1000px;
-  margin: 24px auto;
-  padding: 0 16px;
+  max-width: 1040px;
+  margin: 32px auto;
+  padding: 0 20px;
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 1.6fr;
   gap: 24px;
   align-items: start;
 }
 
-/* ============================================================
-   4.4 Panels
-   ============================================================ */
+/* ------------------------------------------------------------
+   4. Panels (Bento Boxes)
+   ------------------------------------------------------------ */
 .panel {
   background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 20px 20px 24px;
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 24px;
+  transition: transform 0.15s ease;
 }
 
 .panel h2 {
-  margin: 0 0 16px;
-  font-size: 1.05rem;
+  margin: 0 0 18px;
+  font-size: 1.3rem;
+  font-weight: 900;
+  letter-spacing: -0.5px;
   color: var(--text);
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--border);
 }
 
-/* ============================================================
-   4.5 Form (Flexbox — column direction)
-   ============================================================ */
+/* ------------------------------------------------------------
+   5. Form (Flexbox — Neo-Brutalist Inputs & Button)
+   ------------------------------------------------------------ */
 .item-form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 .item-form label {
   display: flex;
   flex-direction: column;
   font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--muted);
-  gap: 4px;
+  font-weight: 800;
+  color: var(--text);
+  gap: 6px;
 }
 
 .item-form input,
 .item-form select {
-  padding: 8px 10px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  font-size: 0.9rem;
-  background: var(--bg);
+  padding: 10px 12px;
+  border: var(--border-width) solid var(--border);
+  border-radius: 8px;
+  font-size: 0.92rem;
+  font-family: inherit;
+  font-weight: 600;
+  background: var(--card);
   color: var(--text);
   outline: none;
-  transition: border-color 0.15s;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
 .item-form input:focus,
 .item-form select:focus {
-  border-color: var(--accent);
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border);
 }
 
 .item-form button {
-  margin-top: 4px;
-  padding: 10px;
+  margin-top: 8px;
+  padding: 12px;
   background: var(--accent);
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  font-size: 0.95rem;
-  font-weight: 600;
+  color: #121316;
+  border: var(--border-width) solid var(--border);
+  border-radius: 8px;
+  font-size: 0.98rem;
+  font-weight: 900;
+  font-family: inherit;
   cursor: pointer;
-  transition: background 0.15s;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
 .item-form button:hover {
-  background: var(--accent-dark);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-lg);
 }
 
-/* ============================================================
-   4.6 Item list and cards (Flexbox)
-   ============================================================ */
+.item-form button:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px var(--border);
+}
+
+/* ------------------------------------------------------------
+   6. Item list and cards (Bento Neo-Brutal Cards)
+   ------------------------------------------------------------ */
 .item-list {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 16px;
 }
 
 /* Empty state placeholder */
 .empty {
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  font-weight: 700;
   text-align: center;
-  padding: 24px 0;
+  padding: 32px 0;
 }
 
 .item-card {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 14px 16px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
+  padding: 16px 18px;
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-md);
   background: var(--card);
-  transition: border-color 0.15s, box-shadow 0.15s;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .item-card:hover {
-  border-color: var(--accent);
-  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.12);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-lg);
 }
 
 .item-card h3 {
-  margin: 0 0 4px;
-  font-size: 0.95rem;
-  font-weight: 600;
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -0.3px;
 }
 
 .item-meta {
-  margin: 6px 0 0;
-  font-size: 0.78rem;
+  margin: 8px 0 0;
+  font-size: 0.8rem;
+  font-weight: 600;
   color: var(--muted);
 }
 
-/* ============================================================
-   4.7 Coloured badges
-   ============================================================ */
+/* ------------------------------------------------------------
+   7. Coloured Badges (Neo-Brutalist Pill)
+   ------------------------------------------------------------ */
 .badge {
   display: inline-block;
-  font-size: 0.7rem;
-  font-weight: 700;
+  font-size: 0.68rem;
+  font-weight: 800;
   color: #ffffff;
-  padding: 2px 8px;
+  padding: 3px 8px;
+  border: 1.5px solid var(--border);
   border-radius: 999px;
   text-transform: uppercase;
   letter-spacing: 0.4px;
+  box-shadow: 1.5px 1.5px 0px var(--border);
 }
 
 .badge-high   { background: var(--badge-high); }
-.badge-medium { background: var(--badge-medium); }
+.badge-medium { background: var(--badge-medium); color: #121316; }
 .badge-low    { background: var(--badge-low); }
 
-/* ============================================================
-   4.8 Done / finished card
-   ============================================================ */
+/* ------------------------------------------------------------
+   8. Done / finished card (Requirement S1-R5)
+   ------------------------------------------------------------ */
 .item-card.done {
-  opacity: 0.72;
+  opacity: 0.8;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--card),
+    var(--card) 12px,
+    var(--bg) 12px,
+    var(--bg) 14px
+  );
 }
 
 .item-card.done h3 {
   text-decoration: line-through;
+  text-decoration-thickness: 2px;
   color: var(--muted);
 }
 
-/* ============================================================
+/* ------------------------------------------------------------
    Status label (Active / Done)
-   ============================================================ */
+   ------------------------------------------------------------ */
 .status {
   font-size: 0.78rem;
-  color: var(--muted);
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1.5px solid var(--border);
+  box-shadow: 1.5px 1.5px 0px var(--border);
   white-space: nowrap;
-  margin-left: 12px;
+  margin-left: 14px;
   flex-shrink: 0;
+  background: var(--card-alt);
 }
 
-/* ============================================================
-   4.9 Responsive — single column under 700 px
-   ============================================================ */
+.item-card.done .status {
+  background: var(--accent-lime);
+  color: #121316;
+}
+
+/* ------------------------------------------------------------
+   9. Responsive — single column under 700 px (Requirement S1-R6)
+   ------------------------------------------------------------ */
 @media (max-width: 700px) {
   .container {
     grid-template-columns: 1fr;
   }
 }
 
-/* ============================================================
-   Footer
-   ============================================================ */
+/* ------------------------------------------------------------
+   10. Footer
+   ------------------------------------------------------------ */
 .app-footer {
   text-align: center;
-  padding: 20px 16px;
-  font-size: 0.82rem;
-  color: var(--muted);
-  border-top: 1px solid var(--border);
-  margin-top: 32px;
+  padding: 24px 16px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--text);
+  border-top: var(--border-width) solid var(--border);
+  background: var(--card);
+  margin-top: 48px;
 }
 
-/* ============================================================
-   Pasul 5 — :focus-visible (keyboard navigation)
-   ============================================================ */
+/* ------------------------------------------------------------
+   11. Focus Visible (Requirement S1-R7)
+   ------------------------------------------------------------ */
 :focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+  outline: 3px solid var(--accent-purple);
+  outline-offset: 3px;
 }
 
-/* ============================================================
-   Pasul 5 — Dark theme (prefers-color-scheme)
-   Only the variable values change; all rules above adapt via var()
-   ============================================================ */
+/* ------------------------------------------------------------
+   12. Dark Theme (prefers-color-scheme) (Requirement S1-R7)
+   ------------------------------------------------------------ */
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg:           #14121d;
-    --card:         #1e1b2e;
-    --text:         #e5e7eb;
-    --muted:        #9ca3af;
-    --border:       #352f4d;
-    --accent-soft:  #2a2342;
+    --bg:              #0e0f14;
+    --bg-pattern:      #232533;
+    --card:            #171922;
+    --card-alt:        #1f212c;
+    --text:            #f8fafc;
+    --muted:           #94a3b8;
+    --border:          #3f4357;
+    --shadow-color:    #000000;
+  }
+
+  .app-header {
+    background: #2a270f;
+    border-bottom-color: #facc15;
+  }
+
+  .app-header h1 {
+    color: #facc15;
+  }
+
+  .app-header p {
+    color: #e2e8f0;
+  }
+
+  .app-count {
+    background: #171922;
+    color: #f8fafc !important;
   }
 
   .item-form input,
   .item-form select {
-    background: #1e1b2e;
+    background: #171922;
     color: var(--text);
     border-color: var(--border);
   }
